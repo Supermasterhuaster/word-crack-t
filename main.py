@@ -12,10 +12,7 @@ def main():
     try:
         dictionary_loader = ControllerDictionaryLoader()
         builder_dictionary = BuilderDictionary(dictionary_loader)
-        dictionary = builder_dictionary.build()
-
-        word_list = ["фильм", "фикус", "книга", "столб", "монет", "крыша", "молот", "окроп", "шахта", "кошка"]
-        dictionary = Dictionary(word_list)  # for testing
+        dictionary: Dictionary = builder_dictionary.build()
         attempts = 6
         free_letters = []
         fixed_letters = []
