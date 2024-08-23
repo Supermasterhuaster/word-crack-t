@@ -16,8 +16,13 @@ class ControllerFilterByPositions:
         :param excluded_words:
         :return:
         """
-        # Removing the words that are in excluded_words
-        filtered_list = [word for word in word_list if word not in excluded_words]
+
+        filtered_list = word_list
+        if len(excluded_words) != 0:
+            # Removing the words that are in excluded_words
+            filtered_list = [word for word in word_list if word not in excluded_words]
+        if len(positions) == 0 or len(letters) == 0:
+            return filtered_list
 
         # Filtering words by letter positions
         result = []

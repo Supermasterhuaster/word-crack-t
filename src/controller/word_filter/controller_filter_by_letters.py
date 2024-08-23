@@ -15,10 +15,12 @@ class ControllerFilterByLetters:
         :param excluded_words:
         :return:
         """
-        # Removing the excluded words from the initial list
-        filtered_words = [word for word in word_list if word not in excluded_words]
-
-        # Filter the remaining words by the presence of all the specified letters
-        filtered_words = [word for word in filtered_words if all(letter in word for letter in letters)]
+        filtered_words = word_list
+        if len(excluded_words) != 0:
+            # Removing the excluded words from the initial list
+            filtered_words = [word for word in word_list if word not in excluded_words]
+        if len(letters) != 0:
+            # Filter the remaining words by the presence of all the specified letters
+            filtered_words = [word for word in filtered_words if all(letter in word for letter in letters)]
 
         return filtered_words

@@ -5,6 +5,9 @@ from src.controller.word_filter.controller_filter_by_positions import Controller
 
 
 class Dictionary:
+    """
+    Contains a dictionary of words for analysis
+    """
 
     def __init__(self, word_list: List[str]):
         self.words = word_list
