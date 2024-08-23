@@ -1,6 +1,7 @@
-from typing import List
+from typing import List, Union
 
-from src.controller.word_filter.interface_word_filter_visitor import InterfaceWordFilterVisitor
+from src.controller.word_filter.controller_filter_by_letters import ControllerFilterByLetters
+from src.controller.word_filter.controller_filter_by_positions import ControllerFilterByPositions
 
 
 class Dictionary:
@@ -8,23 +9,19 @@ class Dictionary:
     def __init__(self, word_list: List[str]):
         self.words = word_list
 
-    def filter_words(self, correct_positions, incorrect_positions, correct_letters, excluded_letters) -> List[str]:
-        filtered_list = []
-        for word in self.words:
-            if any(letter in word for letter in excluded_letters):
-                continue
-            match = True
-            for i, letter in enumerate(word):
-                if i in correct_positions and word[i] != correct_letters[i]:
-                    match = False
-                    break
-                if i in incorrect_positions and word[i] == correct_letters[i]:
-                    match = False
-                    break
-            for pos in incorrect_positions:
-                if correct_letters[pos] not in word:
-                    match = False
-                    break
-            if match:
-                filtered_list.append(word)
-        return filtered_list
+    def filter_words(self, free_letters: List[str], fixed_letters: List[str], positions: List[int],
+                     excluded_words: List[str]) -> Union[str, None]:
+        """
+        Returns the first filtered word from the dictionary or None if the desired word could not be found
+        :param free_letters:
+        :param fixed_letters:
+        :param positions:
+        :param excluded_words:
+        :return:
+        """
+        filtered_words = ControllerFilterByLetters.filter(self.words, free_letters, excluded_words)
+        filtered_words = ControllerFilterByPositions.filter(filtered_words, fixed_letters, positions, excluded_words)
+        if len(filtered_words) == 0:
+            return None
+
+        return filtered_words[0]
