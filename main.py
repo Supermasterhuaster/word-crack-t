@@ -20,6 +20,7 @@ def main():
         excluded_words = []
 
         for attempt in range(attempts):
+            print("")
             if not dictionary.words:
                 print("Программа не может больше предложить вариантов. Проверьте правильность вводимых данных")
                 break
@@ -42,11 +43,11 @@ def main():
 
             # Enter the numbers of letters that are in the word, but not in their place
             incorrect_input = input(
-                f"Введите номера букв, которые есть в слове, но не на своем месте: {formatted_guess}: ")
+                f"Введите номера букв через пробел, которые есть в слове, \nно не на своем месте: {formatted_guess}: ")
             indices = list(map(int, incorrect_input.split()))
             free_letters = [guess[i - 1] for i in indices]
 
-            positions = input(f"Введите номера букв, которые стоят на своем месте: {formatted_guess}: ")
+            positions = input(f"Введите номера букв через пробел, \nкоторые стоят на своем месте: {formatted_guess}: ")
             indices = list(map(int, positions.split()))
             fixed_letters = [guess[i - 1] for i in indices]
             excluded_words.append(guess)
@@ -55,7 +56,6 @@ def main():
     except KeyboardInterrupt:
         print("\nПрограмма прервана пользователем. Выход...")
         sys.exit(0)
-
 
 if __name__ == '__main__':
     main()
