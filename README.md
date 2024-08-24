@@ -1,5 +1,5 @@
 # WordCrackT
-<center> ![WordCrackT](https://github.com/Supermasterhuaster/word-crack-t/blob/master/doc/logo.png?raw=true "WordCrackT") </center>
+![WordCrackT](https://github.com/Supermasterhuaster/word-crack-t/raw/master/doc/logo.png)
 
 В приложении банка Tinkoff (или Tбанк) есть игра в которой надо угадать слова из 5 букв, при угадывании всех слов вы получаете небольшие привилегии и подарки от банка в виде скидок и т.д. Данное приложение помогает пользователю отгадать загаданное слово с более высокой вероятностью на успех, используя довольно простой анализ и фильтр частотности слов.
 
