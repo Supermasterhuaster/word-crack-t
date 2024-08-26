@@ -1,5 +1,4 @@
 # /bin/python3
-import random
 import sys
 
 from src.builder.builder_dictionary import BuilderDictionary
@@ -10,6 +9,7 @@ from src.entities.dictionary import Dictionary
 
 def main():
     try:
+        STARTING_WORD = 'парка' # statistically, this is the most convenient word to start a search
         dictionary_loader = ControllerDictionaryLoader()
         builder_dictionary = BuilderDictionary(dictionary_loader)
         dictionary: Dictionary = builder_dictionary.build()
@@ -31,7 +31,7 @@ def main():
 
             if len(excluded_words) == 0:
                 # if there were no previous attempts, we output a random word
-                guess = random.choice(dictionary.words)
+                guess = STARTING_WORD
             else:
                 guess = dictionary.filter_words(free_letters, fixed_letters, fixed_positions, free_positions,
                                                 excluded_words)
