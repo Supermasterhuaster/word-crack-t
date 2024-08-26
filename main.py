@@ -16,7 +16,8 @@ def main():
         attempts = 6
         free_letters = []
         fixed_letters = []
-        positions = []
+        fixed_positions = []
+        free_positions = []
         excluded_words = []
 
         for attempt in range(attempts):
@@ -32,7 +33,8 @@ def main():
                 # if there were no previous attempts, we output a random word
                 guess = random.choice(dictionary.words)
             else:
-                guess = dictionary.filter_words(free_letters, fixed_letters, positions, excluded_words)
+                guess = dictionary.filter_words(free_letters, fixed_letters, fixed_positions, free_positions,
+                                                excluded_words)
 
             if guess is None:
                 print("Программа не смогла подобрать слово по фильтру. Выход...")
@@ -44,14 +46,17 @@ def main():
             # Enter the numbers of letters that are in the word, but not in their place
             incorrect_input = input(
                 f"Введите номера букв через пробел, которые есть в слове, \nно не на своем месте: {formatted_guess}: ")
+
             indices = list(map(int, incorrect_input.split()))
             free_letters = [guess[i - 1] for i in indices]
+            free_positions = indices
 
             positions = input(f"Введите номера букв через пробел, \nкоторые стоят на своем месте: {formatted_guess}: ")
             indices = list(map(int, positions.split()))
             fixed_letters = [guess[i - 1] for i in indices]
+            fixed_positions = indices
+
             excluded_words.append(guess)
-            positions = indices
 
     except KeyboardInterrupt:
         print("\nПрограмма прервана пользователем. Выход...")

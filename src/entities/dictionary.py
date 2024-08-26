@@ -12,18 +12,20 @@ class Dictionary:
     def __init__(self, word_list: List[str]):
         self.words = word_list
 
-    def filter_words(self, free_letters: List[str], fixed_letters: List[str], positions: List[int],
-                     excluded_words: List[str]) -> Union[str, None]:
+    def filter_words(self, free_letters: List[str], fixed_letters: List[str], fixed_positions: List[int],
+                     free_positions: List[int], excluded_words: List[str]) -> Union[str, None]:
         """
         Returns the first filtered word from the dictionary or None if the desired word could not be found
         :param free_letters:
         :param fixed_letters:
-        :param positions:
+        :param fixed_positions:
+        :param free_positions:
         :param excluded_words:
         :return:
         """
-        filtered_words = ControllerFilterByLetters.filter(self.words, free_letters, excluded_words)
-        filtered_words = ControllerFilterByPositions.filter(filtered_words, fixed_letters, positions, excluded_words)
+        filtered_words = ControllerFilterByLetters.filter(self.words, free_letters, free_positions, excluded_words)
+        filtered_words = ControllerFilterByPositions.filter(filtered_words, fixed_letters, fixed_positions,
+                                                            excluded_words)
         if len(filtered_words) == 0:
             return None
 
