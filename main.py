@@ -9,7 +9,7 @@ from src.entities.dictionary import Dictionary
 
 def main():
     try:
-        STARTING_WORD = 'парка' # statistically, this is the most convenient word to start a search
+        STARTING_WORD = 'парка'  # statistically, this is the most convenient word to start a search
         dictionary_loader = ControllerDictionaryLoader()
         builder_dictionary = BuilderDictionary(dictionary_loader)
         dictionary: Dictionary = builder_dictionary.build()
@@ -61,6 +61,7 @@ def main():
     except KeyboardInterrupt:
         print("\nПрограмма прервана пользователем. Выход...")
         sys.exit(0)
+
 
 if __name__ == '__main__':
     main()
