@@ -33,7 +33,7 @@ def main():
                 # if there were no previous attempts, we output a random word
                 guess = STARTING_WORD
             else:
-                guess = dictionary.filter_words(free_letters, fixed_letters, fixed_positions, free_positions,
+                guess = dictionary.filter_words(fixed_letters, fixed_positions, free_letters, free_positions,
                                                 excluded_words)
 
             if guess is None:
